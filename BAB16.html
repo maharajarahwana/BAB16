@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>BAB16</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>BAB1</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Latihan Kosakata</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .card {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  input {
+    width: 90%;
+    padding: 8px;
+    margin-top: 15px;
+  }
+  button {
+    margin-top: 20px;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+  .result {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .wrong { color: red; }
+  .correct { color: green; }
+  ol { text-align:left; max-height:400px; overflow:auto; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2 id="question"></h2>
+  <input type="text" id="answerInput" placeholder="Tulis jawaban di sini">
+  <br>
+  <button id="nextBtn">Selanjutnya</button>
+</div>
+
+<script>
+let questions = [
+{ soal: "집구하다", jawaban: "mencari rumah" },
+{ soal: "전망", jawaban: "pemandangan" },
+{ soal: "희망", jawaban: "harapan" },
+{ soal: "많다", jawaban: "banyak" },
+{ soal: "방", jawaban: "kamar" },
+{ soal: "부족하다", jawaban: "kurang" },
+{ soal: "의문", jawaban: "pertanyaan" },
+{ soal: "편의 시설", jawaban: "fasilitas" },
+{ soal: "고싶다", jawaban: "ingin" },
+{ soal: "대규모", jawaban: "skala besar" },
+{ soal: "지시하다", jawaban: "mengarahkan" },
+{ soal: "단지", jawaban: "kompleks" },
+{ soal: "지만", jawaban: "tetapi" },
+{ soal: "고층", jawaban: "bertingkat tinggi" },
+{ soal: "행위", jawaban: "perbuatan / tindakan" },
+{ soal: "국토교통부", jawaban: "kementrian perhubungan, infrastruktur dan transportasi" },
+{ soal: "주거", jawaban: "perumahan" },
+{ soal: "실태조사", jawaban: "survei pencarian fakta" },
+{ soal: "형태", jawaban: "bentuk" },
+{ soal: "거주", jawaban: "tempat tinggal / domisili" },
+{ soal: "생략하다", jawaban: "menghilangkan" },
+{ soal: "전체 가구", jawaban: "seluruh rumah tangga" },
+{ soal: "환경", jawaban: "lingkungan" },
+{ soal: "절반", jawaban: "setengah" },
+{ soal: "넓다", jawaban: "luas" },
+{ soal: "보안", jawaban: "keamanan" },
+{ soal: "좁다", jawaban: "sempit" },
+{ soal: "갖추어져", jawaban: "menjadi lengkap" },
+{ soal: "대상임", jawaban: "memenuhi, syarat" },
+{ soal: "각급", jawaban: "setiap tingkatan" },
+{ soal: "아파트", jawaban: "apartemen" },
+{ soal: "선호 하다", jawaban: "lebih menyukai" },
+{ soal: "빌라", jawaban: "villa, rumah mewah" },
+{ soal: "이에비해", jawaban: "dibandingkan dengan ini" },
+{ soal: "깨끗하다", jawaban: "bersih" },
+{ soal: "단독 주택", jawaban: "rumah terpisah" },
+{ soal: "더럽다", jawaban: "kotor" },
+{ soal: "거주하다", jawaban: "tinggal" },
+{ soal: "주택", jawaban: "rumah tinggal" },
+{ soal: "이 처럼", jawaban: "seperti ini" },
+{ soal: "오피스텔", jawaban: "office-tel" },
+{ soal: "노년층", jawaban: "orang lanjut usia" },
+{ soal: "조용하다", jawaban: "tenang" },
+{ soal: "중심", jawaban: "pusat" },
+{ soal: "시끄럽다", jawaban: "berisik" },
+{ soal: "자연 환경", jawaban: "lingkungan alam" },
+{ soal: "기숙사", jawaban: "asrama" },
+{ soal: "근교에", jawaban: "di sekitar pedesaan" },
+{ soal: "편리하다", jawaban: "nyaman, praktis" },
+{ soal: "이유", jawaban: "alasan" },
+{ soal: "교통", jawaban: "transportasi" },
+{ soal: "전원 주택", jawaban: "rumah pedesaan" },
+{ soal: "원룸", jawaban: "satu kamar" },
+{ soal: "조금씩", jawaban: "sedikit demi sedikit" },
+{ soal: "고시원", jawaban: "kamar kos" },
+{ soal: "짓다", jawaban: "membangun / memasak" },
+{ soal: "부동산 에 가다", jawaban: "pergi ke agen properti" },
+{ soal: "바르다", jawaban: "menerapkan" },
+{ soal: "집을 알아보다", jawaban: "mencari tahu rumah" },
+{ soal: "다세대 주택", jawaban: "rumah multi generasi" },
+{ soal: "집을 보다", jawaban: "melihat rumah" },
+{ soal: "약", jawaban: "obat" },
+{ soal: "이사하다", jawaban: "pindah rumah" },
+{ soal: "연립 주택", jawaban: "rumah kota" },
+{ soal: "계약하다", jawaban: "menandatangani kontrak" },
+{ soal: "차지하다", jawaban: "menempati" },
+{ soal: "계약금을 내다", jawaban: "membayar uang kontrak" },
+{ soal: "침실", jawaban: "kamar tidur" },
+{ soal: "부탁", jawaban: "meminta / menolong" },
+{ soal: "화장실", jawaban: "toilet / WC" },
+{ soal: "월세", jawaban: "sewa bulanan" },
+{ soal: "주방", jawaban: "dapur" },
+{ soal: "보증금", jawaban: "uang jaminan" },
+{ soal: "공간에", jawaban: "dalam ruang" },
+{ soal: "편하다", jawaban: "nyaman / santai" },
+{ soal: "필수적인", jawaban: "penting" },
+{ soal: "좋다", jawaban: "bagus / baik" },
+{ soal: "가전 제품", jawaban: "peralatan listrik rumah tangga" },
+{ soal: "나쁘다", jawaban: "buruk" },
+{ soal: "구비 되어", jawaban: "lengkap" },
+{ soal: "인기가 좋다", jawaban: "populer" },
+{ soal: "혼자", jawaban: "sendiri" },
+];
+
+// Acak soal
+questions = questions.sort(() => Math.random() - 0.5);
+
+let index = 0;
+let score = 0;
+let userAnswers = [];
+
+const questionEl = document.getElementById("question");
+const answerInput = document.getElementById("answerInput");
+const nextBtn = document.getElementById("nextBtn");
+const card = document.querySelector(".card");
+
+function showQuestion() {
+  questionEl.textContent = "Soal " + (index + 1) + ": " + questions[index].soal;
+  answerInput.value = "";
+  answerInput.focus();
+}
+
+nextBtn.addEventListener("click", () => {
+  const userAnswer = answerInput.value.trim().toLowerCase();
+  userAnswers[index] = userAnswer; // simpan jawaban sesuai index
+
+  if (userAnswer === questions[index].jawaban) {
+    score++;
+  }
+
+  index++;
+  if (index < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+});
+
+function showResult() {
+  let answerList = "";
+  questions.forEach((q, i) => {
+    if (userAnswers[i] === q.jawaban) {
+      answerList += `<li>${q.soal} = <span class="correct">${q.jawaban}</span></li>`;
+    } else {
+      answerList += `<li>${q.soal} = <span class="correct">${q.jawaban}</span><br>
+                     Jawaban kamu: <span class="wrong">${userAnswers[i] || "(kosong)"}</span></li>`;
+    }
+  });
+
+  card.innerHTML = `
+    <h2>Hasil</h2>
+    <p class="result">Nilai: ${score} / ${questions.length}</p>
+    <hr>
+    <p>Kunci Jawaban:</p>
+    <ol>${answerList}</ol>
+  `;
+}
+
+showQuestion();
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
